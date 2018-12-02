@@ -7,13 +7,15 @@
     <title>login</title>
 </head>
 <body>
-    
+    {% if error %}
+        {{ error }}<br>
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         <p>Usuario</p>
         <input type="text" name="usuario"><br>
         <p>Senha</p>
-        <input type="password" name=""><br><br>
+        <input type="password" name="senha"><br><br>
         <button type="submit">Salvar</button>
     </form>
 </body>
