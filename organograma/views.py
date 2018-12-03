@@ -16,9 +16,11 @@ def cadastro(request):
             user = User.objects.create_user(
                 username=username, password=password, email=email)
             no.user = user
+            user_atual = request.user
             no_atual = No.objects.select_related(
                 'user').get(user=request.user)
             no.contador = no_atual.contador + 1
+            no.last_user = user_atual.username
             no.save()
         return render(request, 'cadastro.html')
     else:
@@ -37,3 +39,14 @@ def login(request):
             error = 'Login inválido!'
             context = {'error': error}
     return render(request, 'login.html', context)
+
+
+def exibicao(request):
+    no = []
+    for user in User.objects.all():
+        head = user.username
+        aux = No.objects.filter(last_user=head).select_related(
+            'user')
+        no.append([head, aux])
+    context = {'no': no}
+    return render(request, 'exibicao.html', context)

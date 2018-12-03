@@ -5,4 +5,5 @@ app_name = 'organograma'
 urlpatterns = [
     path('login/', views.login, name='login'),
     path('cadastro/', views.cadastro, name='cadastro'),
+    path('exibicao/', views.exibicao, name='exibicao')
 ]

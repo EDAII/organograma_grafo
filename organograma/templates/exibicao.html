@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>exibição</title>
+</head>
+<body>
+    <div style="margin-top: 5%;">
+        {% for sup in no %}
+            <div style="border: solid;margin-left: 20%; margin-right: 20%;">
+            <p><b>{{ sup|first }}</b></p>
+            {% for inf in sup|last %}
+                <p>{{ inf.user }}</p>
+            {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
