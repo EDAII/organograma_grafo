@@ -50,3 +50,17 @@ def exibicao(request):
         no.append([head, aux])
     context = {'no': no}
     return render(request, 'exibicao.html', context)
+
+
+def topologica(request):
+    aux = No.objects.filter(last_user=None).select_related('user')
+    c = 1
+    lista = [[c, aux]]
+    while True:
+        aux = No.objects.filter(last_user=aux).select_related('user')
+        c += 1
+        lista.append([c, aux])
+        if aux == lista[-2, 1]:
+            break
+    context = {'no': lista}
+    return render(request, 'topologica.html', context)
